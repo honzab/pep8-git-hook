@@ -17,7 +17,7 @@ else
 fi
 
 echo "Using $PEPTOOL to check your code." 
-DIFFS="$(git diff --staged -z $against -U0 | pep8 --diff --max-line-length 80)"
+DIFFS="$(git diff --staged -z $against -U0 | $PEPTOOL --diff --max-line-length 80)"
 
 if [[ $DIFFS ]]; then
     cat <<\EOF
