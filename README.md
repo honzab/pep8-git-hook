@@ -11,6 +11,10 @@ The hook ignores all lines that are not changed by your changeset.
 
 * ```pip install pep8```
 
+## Installation
+
+* ```curl -o MY_GIT_REPO/.git/hooks/pre-commit https://raw.githubusercontent.com/honzab/pep8-git-hook/master/pre-commit```
+
 ## Known issues 
 
 * As pep8 goes through the files on filesystem and not through the diff to
