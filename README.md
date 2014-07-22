@@ -7,6 +7,9 @@ have any violations in your changes.
 
 The hook ignores all lines that are not changed by your changeset.
 
+The hook prefers [flake8](https://pypi.python.org/pypi/flake8) for the validation,
+if it's not available it takes [pep8](https://pypi.python.org/pypi/pep8) as default.
+
 ## Requirements
 
 * ```pip install pep8```
