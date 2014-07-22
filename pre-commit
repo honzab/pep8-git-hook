@@ -1,0 +1,28 @@
+#!/bin/sh
+if git rev-parse --verify HEAD >/dev/null 2>&1
+then
+	against=HEAD
+else
+	# Initial commit: diff against an empty tree object
+	against=$(git hash-object -t tree /dev/null)
+fi
+
+PEP8="pep8"
+DIFFS="$(git diff --staged -z $against -U0 | pep8 --diff --max-line-length 80)"
+
+if [[ $DIFFS ]]; then
+    cat <<\EOF
+______ ___________      _____ 
+| ___ \  ___| ___ \    |  _  |
+| |_/ / |__ | |_/ /_____\ V / 
+|  __/|  __||  __/______/ _ \ 
+| |   | |___| |        | |_| |
+\_|   \____/\_|        \_____/
+-----------------------------------------------------------------------
+| Violations found in your changes, please fix them before committing |
+-----------------------------------------------------------------------
+
+EOF
+    echo "$DIFFS" | sed "s/^\.\///"
+    exit 1
+fi
